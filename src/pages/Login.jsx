@@ -4,6 +4,7 @@ import API_URL from '../config';
 
 const Login = () => {
   const navigate = useNavigate(); // Access the navigate function
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,19 +27,19 @@ const Login = () => {
         body: JSON.stringify(data),
       });
 
-      // Handle response as needed
       const result = await response.json();
 
-      // Save token to localStorage
       if (result.token) {
         localStorage.setItem('token', result.token);
         navigate('/'); 
       }
+      else {
+        setErrorMessage(result.error);
+      }
 
       console.log(result);
     } catch (error) {
-      console.log("error")
-      console.error('Error:', error);
+      setErrorMessage("Invalid Credential");
     }
   };
 
@@ -90,6 +91,12 @@ const Login = () => {
             </button>
           </div>
         </form>
+        {errorMessage && (
+          <div className="text-center flex flex-col justify-center error-message">
+            <div>{errorMessage}</div>
+            
+          </div>
+        )}
         <div className="text-center">
             <button
               type="button"

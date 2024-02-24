@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import API_URL from '../config';
 
@@ -7,6 +7,26 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isAuthor, setIsAuthor] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    
+    document.body.addEventListener('click', handleClickOutside);
+
+   
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    // Check if click occurred outside error message area
+    if (!e.target.closest('.error-message')) {
+      // Reset error message
+      setErrorMessage('');
+    }
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,21 +50,32 @@ const Register = () => {
 
       // Handle response as needed
       const result = await response.json();
-      console.log(result);
-
-      // After successful registration, navigate to the login page
-      navigate('/login');
+      console.log(result)
+      if (result.success) {
+        navigate('/login');
+      }
+      else {
+        setErrorMessage(result.error);
+      }
+      
+    
     } catch (error) {
       console.log("error")
       console.error('Error:', error);
+        setErrorMessage(error);
+        console.log(errorMessage)
+     
     }
+  };
+  const handleLoginClick = () => {
+    navigate('/login'); // Redirect to the register page
   };
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-full sm:w-96">
         <h2 className="text-2xl font-semibold mb-4 text-center">Register</h2>
-
+        
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="username" className="text-gray-600">
@@ -99,6 +130,19 @@ const Register = () => {
             </button>
           </div>
         </form>
+        {errorMessage && (
+          <div className="text-center flex flex-col justify-center error-message">
+            <div>{errorMessage}</div>
+            <button
+              type="button"
+              className="text-blue-500 hover:underline ml-2"
+              onClick={handleLoginClick}
+            >
+              Login
+            </button>
+          </div>
+        )}
+
         
       </div>
     </div>

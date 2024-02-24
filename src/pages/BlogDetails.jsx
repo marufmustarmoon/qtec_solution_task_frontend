@@ -40,7 +40,7 @@ function BlogDetails() {
     const fetchBlogById = async (blogId) => {
       try {
         const token = localStorage.getItem('token');
-        const apiUrl = `${API_URL}/blog/blogs/${blogId}`;
+        const apiUrl = `${API_URL}/blog/blogs/${blogId}/`;
 
         const response = await fetch(apiUrl, {
           method: 'GET',
