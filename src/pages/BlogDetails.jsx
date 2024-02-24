@@ -39,6 +39,7 @@ function BlogDetails() {
   useEffect(() => {
     const fetchBlogById = async (blogId) => {
       try {
+        console.log(blogId)
         const token = localStorage.getItem('token');
         const apiUrl = `${API_URL}/blog/blogs/${blogId}/`;
 
@@ -53,27 +54,29 @@ function BlogDetails() {
         if (response.ok) {
           const data = await response.json();
           console.log(data);
+          console.log("working")
           setBlog(data);
           const initialBookmarkStatus = {};
-          for (const blog of data.data) {
-            const bookmarkUrl = `${API_URL}/blog/bookmark/${blog.id}/`;
-            const bookmarkResponse = await fetch(bookmarkUrl, {
-              method: 'GET',
-              headers: {
-                'Authorization': `JW ${token}`, 
-                'Content-Type': 'application/json',
-              },
-            });
-            if (bookmarkResponse.ok) {
-              const bookmarkData = await bookmarkResponse.json();
-              console.log("monn",bookmarkData);
-              initialBookmarkStatus[blog.id] = bookmarkData.bookmark;
-              console.log("monn",initialBookmarkStatus)
-            } else {
-              console.error('Error fetching bookmark status. Status:', bookmarkResponse.status);
-            }
+          console.log(data.id)
+          const bookmarkUrl = `${API_URL}/blog/bookmark/${data.id}/`;
+          const bookmarkResponse = await fetch(bookmarkUrl, {
+            method: 'GET',
+            headers: {
+              'Authorization': `JW ${token}`, 
+              'Content-Type': 'application/json',
+            },
+          });
+          if (bookmarkResponse.ok) {
+            const bookmarkData = await bookmarkResponse.json();
+            console.log("monn",bookmarkData);
+            console.log(bookmarkData.bookmark)
+            initialBookmarkStatus[data.id] = bookmarkData.bookmark;
+            console.log("check",initialBookmarkStatus)
+          } else {
+            console.error('Error fetching bookmark status. Status:', bookmarkResponse.status);
           }
-          setBookmarkStatus(initialBookmarkStatus); // Set the individual blog in state
+        
+        setBookmarkStatus(initialBookmarkStatus); // Set the individual blog in state
         } else {
           console.error('Error fetching blog. Status:', response.status);
         }
