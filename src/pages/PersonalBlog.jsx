@@ -67,7 +67,7 @@ function PersonalBlog({ searchTerm }) {
       <div className="grid grid-cols-1 gap-y-10 gap-x-8  mt-8 shadow-sm rounded-lg ">
         {blogs.map(blog => (
           <div key={blog.id} className="flex flex-col md:flex-row   rounded-xl md:space-x-8 bg-stone-100 shadow-gray-400">
-            <img className="w-[20rem] h-[15rem] rounded-lg bg-gray-300" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="Upload your banner image" />
+            <img className="w-[20rem] h-[16rem] rounded-lg bg-gray-300" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="Upload your banner image" />
 
             <div>
               <p>total views: {blog.total_views}</p>
