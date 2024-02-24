@@ -28,10 +28,10 @@ function BlogDetails() {
           [blogId]: !prevStatus[blogId], 
         }));
       } else {
-        console.error('Error toggling bookmark status. Status:', response.status);
+       
       }
     } catch (error) {
-      console.error('Error toggling bookmark status:', error);
+     
     }
   };
   
@@ -52,10 +52,10 @@ function BlogDetails() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+          
           setBlog(data);
           const initialBookmarkStatus = {};
-          console.log(data.id)
+         
          
             const bookmarkUrl = `${API_URL}/blog/bookmark/${data.id}/`;
             const bookmarkResponse = await fetch(bookmarkUrl, {
@@ -67,19 +67,17 @@ function BlogDetails() {
             });
             if (bookmarkResponse.ok) {
               const bookmarkData = await bookmarkResponse.json();
-              console.log("monn",bookmarkData);
               initialBookmarkStatus[data.id] = bookmarkData.bookmark;
-              console.log("monn",initialBookmarkStatus)
+              
             } else {
-              console.error('Error fetching bookmark status. Status:', bookmarkResponse.status);
             }
           
           setBookmarkStatus(initialBookmarkStatus); 
         } else {
-          console.error('Error fetching blog. Status:', response.status);
+         
         }
       } catch (error) {
-        console.error('Error fetching blog:', error);
+        
       }
     };
 
@@ -110,11 +108,8 @@ function BlogDetails() {
           <p>total views: {Math.ceil(blog.total_views / 2)}</p>
       
           <div className="inline-flex items-center mt-5">
-            {blog.writer_image_icon ? (
-              <img className="h-8 md:h-16 mr-3 rounded-full" src={blog.writer_image_icon.url} alt="" />
-            ) : (
+            
               <img className="h-16 mr-3 rounded-full" src="https://cdn0.iconfinder.com/data/icons/leto-ui-generic-1/64/leto-04-256.png" alt="" />
-            )}
             <div>
               <h1 className="font-roboto font-medium text-xl md:text-2xl text-slate-900">{blog.author_username}</h1>
               <p className="font-roboto font-normal text-sm text-slate-600">
@@ -129,7 +124,23 @@ function BlogDetails() {
                 <hr className="mt-5" />
       
                 <div className="flex flex-col items-center mt-5">
-                  <img className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="" />
+                  
+                {blog.banner && (
+                <img
+                  src={`${API_URL}${blog.banner}`}
+                  alt=""
+                  className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded"
+                />
+              )}
+
+             
+              {!blog.banner && (
+                <img
+                  src="https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36"
+                  alt=""
+                  className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded"
+                />
+              )}
                 </div>
       
                 <div className="font-roboto mt-10 mb-32"  >{blog.details}</div>

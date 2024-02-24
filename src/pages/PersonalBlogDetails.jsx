@@ -115,7 +115,7 @@ function PersonalBlogDetails() {
     <div className='overflow-y-scroll h-screen'>
       <Navbar />
       {blog && (
-        <div className="px-10 md:px-16 xl:px-32 2xl:px-60 3xl:px-[28rem] mt-48 sm:mt-40"> 
+        <div className="px-10 md:px-16 xl:px-32 2xl:px-60 3xl:px-[28rem] mt-48 sm:mt-40 mb-10"> 
           <hr className="md:mt-5" />
 
           <form className="mt-5">
@@ -155,17 +155,17 @@ function PersonalBlogDetails() {
             {blog.banner && (
                 <img
                   src={`${API_URL}${blog.banner}`}
-                  alt="Banner Image"
-                  className="w-40 h-40 mb-4"
+                  alt=""
+                  className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded"
                 />
               )}
 
-              {/* Default image if no banner is uploaded */}
+             
               {!blog.banner && (
                 <img
                   src="https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36"
-                  alt="Default Banner Image"
-                  className="w-40 h-40 mb-4"
+                  alt=""
+                  className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded"
                 />
               )}
             <input
