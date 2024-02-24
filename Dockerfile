@@ -1,23 +1,23 @@
-# Use an official Node.js image as the base image
+# Use official Node.js image as base
 FROM node:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Set working directory inside the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json to container
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the remaining app files to the working directory
+# Copy the rest of the application code to container
 COPY . .
 
-# Build the app
-RUN npm run build
+# Build the Vite application for production
+RUN npm run production
 
-# Expose port 3000 to the outside world
-EXPOSE 3000
+# Expose the port your app runs on (if necessary)
+# EXPOSE 3000
 
-# Command to run the app
-CMD npm run dev
+# Command to run the application (if necessary)
+# CMD ["npm", "run", "start"]
