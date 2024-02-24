@@ -9,7 +9,7 @@ function BlogList({ searchTerm }) {
   const navigate = useNavigate();
   const handleReadMore = (blogId) => {
     console.log(blogId);
-    navigate(`/blogdetails/${blogId}`);
+    navigate(`/blog-details/${blogId}`);
   };
   const toggleBookmark = async (blogId) => {
     try {
