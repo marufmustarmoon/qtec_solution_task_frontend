@@ -127,7 +127,7 @@ function BlogDetails() {
                 <hr className="mt-5" />
       
                 <div className="flex flex-col items-center mt-5">
-                  <img className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="Upload your banner image" />
+                  <img className="h-[15rem] sm:h-[26rem] xl:h-[38rem] rounded" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="" />
                 </div>
       
                 <div className="font-roboto mt-10 mb-32"  >{blog.details}</div>

@@ -102,7 +102,7 @@ function BlogList({ searchTerm }) {
       <div className="grid grid-cols-1 gap-y-10 gap-x-8  mt-8 shadow-sm rounded-lg bg-white ">
         {blogs.map(blog => (
           <div key={blog.id} className="flex flex-col md:flex-row rounded-xl md:space-x-8 bg-stone-100 shadow-gray-400">
-            <img className="w-[20rem] rounded-lg bg-gray-300" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="Upload your banner image" />
+            <img className="w-[20rem] rounded-lg bg-gray-300" src={`${API_URL}${blog.banner}` || 'https://img.freepik.com/free-photo/teamwork-making-online-blog_53876-94868.jpg?w=740&t=st=1708758855~exp=1708759455~hmac=fac13dc445abed1246ffd83debfee0b086a5369327499a4818d65d227f22ad36'}  alt="" />
              
             <div>
               <p>total views: {Math.ceil(blog.total_views / 2)}</p>
@@ -119,7 +119,7 @@ function BlogList({ searchTerm }) {
               >
                 <path 
                   d="M0 48C0 21.5 21.5 0 48 0l0 48V441.4l130.1-92.9c8.3-6 19.6-6 27.9 0L336 441.4V48H48V0H336c26.5 0 48 21.5 48 48V488c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5 37.9 507.5c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"
-                  fill={bookmarkStatus[blog.id] ? 'yellow' : 'currentColor'} // Dynamically set the fill color based on bookmarkStatus
+                  fill={bookmarkStatus[blog.id] ? 'yellow' : 'currentColor'} 
                 />
               </svg>
 
